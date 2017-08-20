@@ -1,6 +1,6 @@
-﻿namespace Pantalla
+﻿namespace Window
 {
-    partial class PantallaPrincipal
+    partial class PrincipalWindow
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             this.Next = new System.Windows.Forms.Button();
-            this.txtBox_Contador = new System.Windows.Forms.TextBox();
+            this.txt_Counter = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.txt_donacion = new System.Windows.Forms.TextBox();
-            this.lbl_donacion = new System.Windows.Forms.Label();
-            this.lbl_ventanas = new System.Windows.Forms.Label();
+            this.txt_donation = new System.Windows.Forms.TextBox();
+            this.lbl_donation = new System.Windows.Forms.Label();
+            this.lbl_windows = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(26, 37);
+            this.Next.Location = new System.Drawing.Point(883, 314);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(97, 35);
             this.Next.TabIndex = 0;
-            this.Next.Text = "A otra ventana!";
+            this.Next.Text = "To Another Window!";
             this.Next.UseVisualStyleBackColor = true;
             this.Next.Click += new System.EventHandler(this.Next_Click);
             // 
-            // txtBox_Contador
+            // txt_Counter
             // 
-            this.txtBox_Contador.Location = new System.Drawing.Point(83, 156);
-            this.txtBox_Contador.Name = "txtBox_Contador";
-            this.txtBox_Contador.Size = new System.Drawing.Size(100, 20);
-            this.txtBox_Contador.TabIndex = 1;
+            this.txt_Counter.Location = new System.Drawing.Point(424, 166);
+            this.txt_Counter.Name = "txt_Counter";
+            this.txt_Counter.Size = new System.Drawing.Size(100, 20);
+            this.txt_Counter.TabIndex = 1;
             // 
             // menuStrip1
             // 
@@ -63,7 +63,7 @@
             this.inicioToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(284, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1009, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -73,80 +73,82 @@
             this.donarToolStripMenuItem,
             this.cerrarXToolStripMenuItem});
             this.inicioToolStripMenuItem.Name = "inicioToolStripMenuItem";
-            this.inicioToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.inicioToolStripMenuItem.Text = "Inicio";
+            this.inicioToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.inicioToolStripMenuItem.Text = "Menu";
             // 
             // donarToolStripMenuItem
             // 
             this.donarToolStripMenuItem.Name = "donarToolStripMenuItem";
             this.donarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.donarToolStripMenuItem.Text = "Donar [ $ ]";
+            this.donarToolStripMenuItem.Text = "Donate [ $ ]";
             this.donarToolStripMenuItem.Click += new System.EventHandler(this.donarToolStripMenuItem_Click);
             // 
             // cerrarXToolStripMenuItem
             // 
             this.cerrarXToolStripMenuItem.Name = "cerrarXToolStripMenuItem";
             this.cerrarXToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cerrarXToolStripMenuItem.Text = "Cerrar [ X ]";
+            this.cerrarXToolStripMenuItem.Text = "Close [ X ]";
             this.cerrarXToolStripMenuItem.Click += new System.EventHandler(this.cerrarXToolStripMenuItem_Click);
             // 
-            // txt_donacion
+            // txt_donation
             // 
-            this.txt_donacion.Location = new System.Drawing.Point(83, 119);
-            this.txt_donacion.Name = "txt_donacion";
-            this.txt_donacion.Size = new System.Drawing.Size(100, 20);
-            this.txt_donacion.TabIndex = 3;
+            this.txt_donation.Location = new System.Drawing.Point(424, 129);
+            this.txt_donation.Name = "txt_donation";
+            this.txt_donation.Size = new System.Drawing.Size(100, 20);
+            this.txt_donation.TabIndex = 3;
             // 
-            // lbl_donacion
+            // lbl_donation
             // 
-            this.lbl_donacion.AutoSize = true;
-            this.lbl_donacion.Location = new System.Drawing.Point(101, 103);
-            this.lbl_donacion.Name = "lbl_donacion";
-            this.lbl_donacion.Size = new System.Drawing.Size(64, 13);
-            this.lbl_donacion.TabIndex = 4;
-            this.lbl_donacion.Text = "DONACIÓN";
+            this.lbl_donation.AutoSize = true;
+            this.lbl_donation.Location = new System.Drawing.Point(442, 113);
+            this.lbl_donation.Name = "lbl_donation";
+            this.lbl_donation.Size = new System.Drawing.Size(64, 13);
+            this.lbl_donation.TabIndex = 4;
+            this.lbl_donation.Text = "DONATION";
             // 
-            // lbl_ventanas
+            // lbl_windows
             // 
-            this.lbl_ventanas.AutoSize = true;
-            this.lbl_ventanas.Location = new System.Drawing.Point(80, 179);
-            this.lbl_ventanas.Name = "lbl_ventanas";
-            this.lbl_ventanas.Size = new System.Drawing.Size(92, 13);
-            this.lbl_ventanas.TabIndex = 5;
-            this.lbl_ventanas.Text = "Nuevas Ventanas";
+            this.lbl_windows.AutoSize = true;
+            this.lbl_windows.Location = new System.Drawing.Point(442, 189);
+            this.lbl_windows.Name = "lbl_windows";
+            this.lbl_windows.Size = new System.Drawing.Size(76, 13);
+            this.lbl_windows.TabIndex = 5;
+            this.lbl_windows.Text = "New Windows";
             // 
-            // PantallaPrincipal
+            // PrincipalWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.lbl_ventanas);
-            this.Controls.Add(this.lbl_donacion);
-            this.Controls.Add(this.txt_donacion);
-            this.Controls.Add(this.txtBox_Contador);
+            this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.Controls.Add(this.lbl_windows);
+            this.Controls.Add(this.lbl_donation);
+            this.Controls.Add(this.txt_donation);
+            this.Controls.Add(this.txt_Counter);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "PantallaPrincipal";
+            this.Name = "PrincipalWindow";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.PrincipalWindow_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button Next;
-        private System.Windows.Forms.TextBox txtBox_Contador;
+        private System.Windows.Forms.TextBox txt_Counter;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem inicioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarXToolStripMenuItem;
-        private System.Windows.Forms.TextBox txt_donacion;
-        private System.Windows.Forms.Label lbl_donacion;
-        private System.Windows.Forms.Label lbl_ventanas;
+        private System.Windows.Forms.TextBox txt_donation;
+        private System.Windows.Forms.Label lbl_donation;
+        private System.Windows.Forms.Label lbl_windows;
     }
 }
 

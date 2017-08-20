@@ -7,49 +7,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Aplicacion;
+using Aplication;
 
-namespace Pantalla
+namespace Window
 {
-    public partial class PantallaPrincipal : Form
+    public partial class PrincipalWindow : Form
     {
         int counter;
         int donation;
-
-        public PantallaPrincipal()
+        
+        public PrincipalWindow()
         {
             InitializeComponent();
             counter = 0;
             donation = 0;
         }
 
-        
+        // FORM - LOAD
+        private void PrincipalWindow_Load(object sender, EventArgs e)
+        { this.Text = "Optimal Decision"; }
 
         private void Next_Click(object sender, EventArgs e)
         {
-            Form1 ventanaPrueba = new Form1();
-            ventanaPrueba.FormClosing += new FormClosingEventHandler(FormPrincipal_FormClosing);
+            Decision testWindow = new Decision();
+            testWindow.FormClosing += new FormClosingEventHandler(FormPrincipal_FormClosing);
             this.Hide();
-            ventanaPrueba.Show();
+            testWindow.Show();
         }
 
         private void FormPrincipal_FormClosing(object sender, EventArgs e)
         {
             this.Show();
             counter++;
-            txtBox_Contador.Text = counter.ToString();
+            txt_Counter.Text = counter.ToString();
         }
+
+        // DROP DOWN MENU
 
         private void donarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Muchas Gracias! :)");
+            MessageBox.Show("Thanks a lot! :)");
             donation += 1000;
-            txt_donacion.Text = donation.ToString(); 
+            txt_donation.Text = donation.ToString(); 
         }
 
         private void cerrarXToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to exit?", "Cerrar la Aplicación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Do you want to exit?", "Close the App", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
             }

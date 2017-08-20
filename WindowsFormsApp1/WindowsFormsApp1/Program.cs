@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dao;
+using Entidades;
 
-namespace Pantalla
+namespace Window
 {
     static class Program
     {
@@ -16,7 +18,7 @@ namespace Pantalla
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PantallaPrincipal());
+            Application.Run(new PrincipalWindow());
         }
     }
 }

@@ -7,15 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Pantalla;
+using Window;
+using Dao;
+using Entidades;
 
-namespace Aplicacion
+namespace Aplication
 {
-    public partial class Form1 : Form
+    public partial class Decision : Form
     {
-        public Form1()
-        {
-            Text = "Form2"; 
+        public Decision()
+        { 
             InitializeComponent();
         }
 
@@ -23,6 +24,5 @@ namespace Aplicacion
         {
             this.Close();          
         }
-
     }
 }

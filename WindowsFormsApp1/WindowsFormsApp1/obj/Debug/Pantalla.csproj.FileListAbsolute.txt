@@ -6,5 +6,9 @@ C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFor
 C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Pantalla.csproj.GenerateResource.Cache
 C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
-C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Aplicacion.Form1.resources
-C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Pantalla.PantallaPrincipal.resources
+C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Window.PrincipalWindow.resources
+C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\ClassLibrary1.dll
+C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Dao.dll
+C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\ClassLibrary1.pdb
+C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Dao.pdb
+C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Aplication.Decision.resources
