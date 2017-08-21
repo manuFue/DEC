@@ -40,14 +40,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="ConnectionString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaDecisionDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SistemaDecisionDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="StandardDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\Entidades.csproj">
       <Project>{ac27e131-1d01-409c-aa7f-aee8695402f0}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SistemaDecisionDataSet.xsc">
+      <DependentUpon>SistemaDecisionDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SistemaDecisionDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaDecisionDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SistemaDecisionDataSet.xss">
+      <DependentUpon>SistemaDecisionDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

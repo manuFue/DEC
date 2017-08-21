@@ -40,6 +40,8 @@
             this.listView_Standard = new System.Windows.Forms.ListView();
             this.addStandard = new System.Windows.Forms.Button();
             this.gbox_Standards = new System.Windows.Forms.GroupBox();
+            this.btn_newStandard = new System.Windows.Forms.Button();
+            this.cbo_Standars = new System.Windows.Forms.ComboBox();
             this.lbl_StandardList = new System.Windows.Forms.Label();
             this.lbl_DecisionName = new System.Windows.Forms.Label();
             this.txt_DecisionProblem = new System.Windows.Forms.TextBox();
@@ -104,15 +106,16 @@
             // 
             // txt_StandardName
             // 
-            this.txt_StandardName.Location = new System.Drawing.Point(100, 21);
+            this.txt_StandardName.Location = new System.Drawing.Point(146, 128);
             this.txt_StandardName.Name = "txt_StandardName";
             this.txt_StandardName.Size = new System.Drawing.Size(210, 20);
             this.txt_StandardName.TabIndex = 14;
+            this.txt_StandardName.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // lbl_StandardName
             // 
             this.lbl_StandardName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_StandardName.Location = new System.Drawing.Point(12, 18);
+            this.lbl_StandardName.Location = new System.Drawing.Point(15, 107);
             this.lbl_StandardName.Name = "lbl_StandardName";
             this.lbl_StandardName.Size = new System.Drawing.Size(85, 23);
             this.lbl_StandardName.TabIndex = 13;
@@ -135,16 +138,17 @@
             // 
             this.listView_Standard.Location = new System.Drawing.Point(325, 44);
             this.listView_Standard.Name = "listView_Standard";
-            this.listView_Standard.Size = new System.Drawing.Size(174, 107);
+            this.listView_Standard.Size = new System.Drawing.Size(174, 124);
             this.listView_Standard.TabIndex = 11;
             this.listView_Standard.UseCompatibleStateImageBehavior = false;
+            this.listView_Standard.View = System.Windows.Forms.View.SmallIcon;
             // 
             // addStandard
             // 
             this.addStandard.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addStandard.Location = new System.Drawing.Point(114, 134);
+            this.addStandard.Location = new System.Drawing.Point(100, 134);
             this.addStandard.Name = "addStandard";
-            this.addStandard.Size = new System.Drawing.Size(178, 34);
+            this.addStandard.Size = new System.Drawing.Size(210, 34);
             this.addStandard.TabIndex = 10;
             this.addStandard.Text = "Agregar Criterio";
             this.addStandard.UseVisualStyleBackColor = true;
@@ -155,19 +159,38 @@
             this.gbox_Standards.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbox_Standards.Controls.Add(this.btn_newStandard);
+            this.gbox_Standards.Controls.Add(this.cbo_Standars);
             this.gbox_Standards.Controls.Add(this.lbl_StandardList);
             this.gbox_Standards.Controls.Add(this.txt_StandardDescription);
             this.gbox_Standards.Controls.Add(this.lbl_Description);
-            this.gbox_Standards.Controls.Add(this.txt_StandardName);
             this.gbox_Standards.Controls.Add(this.lbl_StandardName);
             this.gbox_Standards.Controls.Add(this.listView_Standard);
             this.gbox_Standards.Controls.Add(this.addStandard);
             this.gbox_Standards.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbox_Standards.Location = new System.Drawing.Point(0, 193);
+            this.gbox_Standards.Location = new System.Drawing.Point(12, 193);
             this.gbox_Standards.Name = "gbox_Standards";
-            this.gbox_Standards.Size = new System.Drawing.Size(515, 179);
+            this.gbox_Standards.Size = new System.Drawing.Size(503, 177);
             this.gbox_Standards.TabIndex = 17;
             this.gbox_Standards.TabStop = false;
+            // 
+            // btn_newStandard
+            // 
+            this.btn_newStandard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_newStandard.Location = new System.Drawing.Point(133, 16);
+            this.btn_newStandard.Name = "btn_newStandard";
+            this.btn_newStandard.Size = new System.Drawing.Size(145, 22);
+            this.btn_newStandard.TabIndex = 22;
+            this.btn_newStandard.Text = "Crear Nuevo Criterio";
+            this.btn_newStandard.UseVisualStyleBackColor = true;
+            // 
+            // cbo_Standars
+            // 
+            this.cbo_Standars.FormattingEnabled = true;
+            this.cbo_Standars.Location = new System.Drawing.Point(6, 16);
+            this.cbo_Standars.Name = "cbo_Standars";
+            this.cbo_Standars.Size = new System.Drawing.Size(121, 21);
+            this.cbo_Standars.TabIndex = 18;
             // 
             // lbl_StandardList
             // 
@@ -182,7 +205,7 @@
             // lbl_DecisionName
             // 
             this.lbl_DecisionName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_DecisionName.Location = new System.Drawing.Point(9, 78);
+            this.lbl_DecisionName.Location = new System.Drawing.Point(27, 78);
             this.lbl_DecisionName.Name = "lbl_DecisionName";
             this.lbl_DecisionName.Size = new System.Drawing.Size(157, 23);
             this.lbl_DecisionName.TabIndex = 17;
@@ -191,15 +214,16 @@
             // 
             // txt_DecisionProblem
             // 
-            this.txt_DecisionProblem.Location = new System.Drawing.Point(12, 104);
+            this.txt_DecisionProblem.Location = new System.Drawing.Point(27, 105);
             this.txt_DecisionProblem.Name = "txt_DecisionProblem";
             this.txt_DecisionProblem.Size = new System.Drawing.Size(223, 20);
             this.txt_DecisionProblem.TabIndex = 17;
+            this.txt_DecisionProblem.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // lbl_Date
             // 
             this.lbl_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Date.Location = new System.Drawing.Point(12, 127);
+            this.lbl_Date.Location = new System.Drawing.Point(27, 128);
             this.lbl_Date.Name = "lbl_Date";
             this.lbl_Date.Size = new System.Drawing.Size(52, 23);
             this.lbl_Date.TabIndex = 18;
@@ -209,7 +233,7 @@
             // txt_ProblemDate
             // 
             this.txt_ProblemDate.Enabled = false;
-            this.txt_ProblemDate.Location = new System.Drawing.Point(70, 130);
+            this.txt_ProblemDate.Location = new System.Drawing.Point(85, 131);
             this.txt_ProblemDate.Name = "txt_ProblemDate";
             this.txt_ProblemDate.Size = new System.Drawing.Size(68, 20);
             this.txt_ProblemDate.TabIndex = 19;
@@ -250,9 +274,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 400);
+            this.ClientSize = new System.Drawing.Size(523, 414);
             this.Controls.Add(this.pbox_interrogation);
             this.Controls.Add(this.lbl_StandardMax);
+            this.Controls.Add(this.txt_StandardName);
             this.Controls.Add(this.lbl_ProblemImportant);
             this.Controls.Add(this.txt_ProblemDate);
             this.Controls.Add(this.lbl_Date);
@@ -299,5 +324,7 @@
         private System.Windows.Forms.Label lbl_StandardList;
         private System.Windows.Forms.Label lbl_StandardMax;
         private System.Windows.Forms.PictureBox pbox_interrogation;
+        private System.Windows.Forms.Button btn_newStandard;
+        private System.Windows.Forms.ComboBox cbo_Standars;
     }
 }

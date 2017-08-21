@@ -11,5 +11,15 @@ namespace Entidades
         public int? IdStandard { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public Standard() { }
+
+        public Standard(int? ID, string NAME, string DESCRIPTION)
+        {
+            this.IdStandard = ID;
+            this.Name = NAME;
+            this.Description = DESCRIPTION;
+        }
+
     }
 }

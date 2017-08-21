@@ -31,10 +31,27 @@ namespace Aplication
 
         private void Decision_Load(object sender, EventArgs e)
         {
-            ///Image DecisionImage = new Bitmap(Path.Combine(Application.StartupPath, @"Images\interrogation.jpg"));
+            btn_before.Enabled = false;
             txt_ProblemDate.Text = DateTime.Today.ToShortDateString();
-            //string imagePath = Path.Combine(Application.StartupPath, "Images\interrogation.jpg");
             pbox_interrogation.Image = Image.FromFile(Path.Combine(Application.StartupPath, @"Images\interrogation.jpg"));
+            LoadStandars();
+        }
+
+        protected void LoadStandars()
+        {
+
+            cbo_Standars.DataSource = StandardDao.GetStandards();
+            cbo_Standars.DisplayMember = "Name";
+            cbo_Standars.ValueMember = "IdStandard";
+            /*cbo_Standars.DataValueField = "IdStandard";
+            cboCargo.DataTextField = "Descripcion";
+            cboCargo.DataBind();*/
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            var bl = !string.IsNullOrEmpty(txt_DecisionProblem.Text) && !string.IsNullOrEmpty(txt_StandardName.Text);
+            btn_before.Enabled = bl;
         }
 
         private void addStandard_Click(object sender, EventArgs e)
@@ -45,6 +62,7 @@ namespace Aplication
             {
                 if (StandardCounter < 7)
                 {
+                    ActualDecision.Name = txt_DecisionProblem.Text;
                     ActualDecision.Date = DateTime.Today;
                     listView_Standard.Items.Add(txt_StandardName.Text, StandardCounter + 1);
                     StandardCounter++;
