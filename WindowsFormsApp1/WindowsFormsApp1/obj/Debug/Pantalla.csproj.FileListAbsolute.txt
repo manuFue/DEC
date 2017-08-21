@@ -12,3 +12,4 @@ C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Dao.dll
 C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\ClassLibrary1.pdb
 C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Dao.pdb
 C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Aplication.Decision.resources
+C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Alternatives.resources
