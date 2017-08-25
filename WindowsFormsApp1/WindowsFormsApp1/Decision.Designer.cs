@@ -33,9 +33,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txt_StandardDescription = new System.Windows.Forms.TextBox();
-            this.lbl_Description = new System.Windows.Forms.Label();
-            this.txt_StandardName = new System.Windows.Forms.TextBox();
-            this.lbl_StandardName = new System.Windows.Forms.Label();
             this.lbl_Standards = new System.Windows.Forms.Label();
             this.listView_Standard = new System.Windows.Forms.ListView();
             this.addStandard = new System.Windows.Forms.Button();
@@ -88,39 +85,13 @@
             // 
             // txt_StandardDescription
             // 
-            this.txt_StandardDescription.Location = new System.Drawing.Point(100, 46);
+            this.txt_StandardDescription.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.txt_StandardDescription.Enabled = false;
+            this.txt_StandardDescription.Location = new System.Drawing.Point(6, 45);
             this.txt_StandardDescription.Multiline = true;
             this.txt_StandardDescription.Name = "txt_StandardDescription";
-            this.txt_StandardDescription.Size = new System.Drawing.Size(210, 84);
+            this.txt_StandardDescription.Size = new System.Drawing.Size(210, 44);
             this.txt_StandardDescription.TabIndex = 16;
-            // 
-            // lbl_Description
-            // 
-            this.lbl_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Description.Location = new System.Drawing.Point(12, 44);
-            this.lbl_Description.Name = "lbl_Description";
-            this.lbl_Description.Size = new System.Drawing.Size(100, 23);
-            this.lbl_Description.TabIndex = 15;
-            this.lbl_Description.Text = "Descripción:";
-            this.lbl_Description.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txt_StandardName
-            // 
-            this.txt_StandardName.Location = new System.Drawing.Point(146, 128);
-            this.txt_StandardName.Name = "txt_StandardName";
-            this.txt_StandardName.Size = new System.Drawing.Size(210, 20);
-            this.txt_StandardName.TabIndex = 14;
-            this.txt_StandardName.TextChanged += new System.EventHandler(this.textBox_TextChanged);
-            // 
-            // lbl_StandardName
-            // 
-            this.lbl_StandardName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_StandardName.Location = new System.Drawing.Point(15, 107);
-            this.lbl_StandardName.Name = "lbl_StandardName";
-            this.lbl_StandardName.Size = new System.Drawing.Size(85, 23);
-            this.lbl_StandardName.TabIndex = 13;
-            this.lbl_StandardName.Text = "Nombre:";
-            this.lbl_StandardName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbl_Standards
             // 
@@ -136,17 +107,17 @@
             // 
             // listView_Standard
             // 
-            this.listView_Standard.Location = new System.Drawing.Point(325, 44);
+            this.listView_Standard.Location = new System.Drawing.Point(323, 42);
             this.listView_Standard.Name = "listView_Standard";
-            this.listView_Standard.Size = new System.Drawing.Size(174, 124);
+            this.listView_Standard.Size = new System.Drawing.Size(174, 105);
             this.listView_Standard.TabIndex = 11;
             this.listView_Standard.UseCompatibleStateImageBehavior = false;
-            this.listView_Standard.View = System.Windows.Forms.View.SmallIcon;
+            this.listView_Standard.View = System.Windows.Forms.View.List;
             // 
             // addStandard
             // 
             this.addStandard.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addStandard.Location = new System.Drawing.Point(100, 134);
+            this.addStandard.Location = new System.Drawing.Point(6, 95);
             this.addStandard.Name = "addStandard";
             this.addStandard.Size = new System.Drawing.Size(210, 34);
             this.addStandard.TabIndex = 10;
@@ -163,8 +134,6 @@
             this.gbox_Standards.Controls.Add(this.cbo_Standars);
             this.gbox_Standards.Controls.Add(this.lbl_StandardList);
             this.gbox_Standards.Controls.Add(this.txt_StandardDescription);
-            this.gbox_Standards.Controls.Add(this.lbl_Description);
-            this.gbox_Standards.Controls.Add(this.lbl_StandardName);
             this.gbox_Standards.Controls.Add(this.listView_Standard);
             this.gbox_Standards.Controls.Add(this.addStandard);
             this.gbox_Standards.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -177,25 +146,29 @@
             // btn_newStandard
             // 
             this.btn_newStandard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_newStandard.Location = new System.Drawing.Point(133, 16);
+            this.btn_newStandard.Location = new System.Drawing.Point(165, 11);
             this.btn_newStandard.Name = "btn_newStandard";
-            this.btn_newStandard.Size = new System.Drawing.Size(145, 22);
+            this.btn_newStandard.Size = new System.Drawing.Size(145, 33);
             this.btn_newStandard.TabIndex = 22;
-            this.btn_newStandard.Text = "Crear Nuevo Criterio";
+            this.btn_newStandard.Text = "Nueva Decisión";
             this.btn_newStandard.UseVisualStyleBackColor = true;
+            this.btn_newStandard.Click += new System.EventHandler(this.btn_newStandard_Click);
             // 
             // cbo_Standars
             // 
+            this.cbo_Standars.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_Standars.Font = new System.Drawing.Font("Lemon/Milk", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbo_Standars.FormattingEnabled = true;
             this.cbo_Standars.Location = new System.Drawing.Point(6, 16);
             this.cbo_Standars.Name = "cbo_Standars";
-            this.cbo_Standars.Size = new System.Drawing.Size(121, 21);
+            this.cbo_Standars.Size = new System.Drawing.Size(153, 23);
             this.cbo_Standars.TabIndex = 18;
+            this.cbo_Standars.SelectedIndexChanged += new System.EventHandler(this.cbo_Standars_SelectedIndexChanged);
             // 
             // lbl_StandardList
             // 
             this.lbl_StandardList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_StandardList.Location = new System.Drawing.Point(344, 16);
+            this.lbl_StandardList.Location = new System.Drawing.Point(321, 11);
             this.lbl_StandardList.Name = "lbl_StandardList";
             this.lbl_StandardList.Size = new System.Drawing.Size(133, 23);
             this.lbl_StandardList.TabIndex = 17;
@@ -218,7 +191,6 @@
             this.txt_DecisionProblem.Name = "txt_DecisionProblem";
             this.txt_DecisionProblem.Size = new System.Drawing.Size(223, 20);
             this.txt_DecisionProblem.TabIndex = 17;
-            this.txt_DecisionProblem.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // lbl_Date
             // 
@@ -277,7 +249,6 @@
             this.ClientSize = new System.Drawing.Size(523, 414);
             this.Controls.Add(this.pbox_interrogation);
             this.Controls.Add(this.lbl_StandardMax);
-            this.Controls.Add(this.txt_StandardName);
             this.Controls.Add(this.lbl_ProblemImportant);
             this.Controls.Add(this.txt_ProblemDate);
             this.Controls.Add(this.lbl_Date);
@@ -290,7 +261,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Decision";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Nueva Decisión";
             this.Load += new System.EventHandler(this.Decision_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -309,9 +280,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.TextBox txt_StandardDescription;
-        private System.Windows.Forms.Label lbl_Description;
-        private System.Windows.Forms.TextBox txt_StandardName;
-        private System.Windows.Forms.Label lbl_StandardName;
         private System.Windows.Forms.Label lbl_Standards;
         private System.Windows.Forms.ListView listView_Standard;
         private System.Windows.Forms.Button addStandard;

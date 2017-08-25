@@ -63,6 +63,12 @@
     <Compile Include="Alternatives.Designer.cs">
       <DependentUpon>Alternatives.cs</DependentUpon>
     </Compile>
+    <Compile Include="New_Standard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New_Standard.Designer.cs">
+      <DependentUpon>New_Standard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Window.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Decision.resx">
       <DependentUpon>Decision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New_Standard.resx">
+      <DependentUpon>New_Standard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window.resx">
       <DependentUpon>Window.cs</DependentUpon>

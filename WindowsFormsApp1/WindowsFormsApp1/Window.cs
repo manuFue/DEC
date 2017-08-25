@@ -29,10 +29,10 @@ namespace Window
 
         private void Next_Click(object sender, EventArgs e)
         {
-            Decision testWindow = new Decision();
-            testWindow.FormClosing += new FormClosingEventHandler(FormPrincipal_FormClosing);
+            Decision decisionWindow = new Decision();
+            decisionWindow.FormClosing += new FormClosingEventHandler(FormPrincipal_FormClosing);
             this.Hide();
-            testWindow.Show();
+            decisionWindow.Show();
         }
 
         private void FormPrincipal_FormClosing(object sender, EventArgs e)

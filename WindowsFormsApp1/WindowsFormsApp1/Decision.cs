@@ -18,6 +18,7 @@ namespace Aplication
     {
         public int StandardCounter { get; set; }
         public DecisionProblem ActualDecision = new DecisionProblem();
+        public List<Entidades.Standard> StandardList = new List<Entidades.Standard>();
 
         public Decision()
         {
@@ -34,25 +35,41 @@ namespace Aplication
             btn_before.Enabled = false;
             txt_ProblemDate.Text = DateTime.Today.ToShortDateString();
             pbox_interrogation.Image = Image.FromFile(Path.Combine(Application.StartupPath, @"Images\interrogation.jpg"));
+
+            // StandardList.Add()
             LoadStandars();
         }
 
+        // COMBO BOX STANDARD
         protected void LoadStandars()
         {
-
-            cbo_Standars.DataSource = StandardDao.GetStandards();
+            // StandardList = (;
+            // CreateDefaultStandard();
+            Entidades.Standard Default = new Entidades.Standard(null, "< Seleccionar >", "");
+            StandardList = StandardDao.GetStandards();
+            StandardList.Insert(0, Default);
+            cbo_Standars.DataSource = StandardList;
             cbo_Standars.DisplayMember = "Name";
             cbo_Standars.ValueMember = "IdStandard";
-            /*cbo_Standars.DataValueField = "IdStandard";
-            cboCargo.DataTextField = "Descripcion";
-            cboCargo.DataBind();*/
+            cbo_Standars.SelectedIndex = 0;
         }
 
-        private void textBox_TextChanged(object sender, EventArgs e)
+        private void cbo_Standars_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var bl = !string.IsNullOrEmpty(txt_DecisionProblem.Text) && !string.IsNullOrEmpty(txt_StandardName.Text);
-            btn_before.Enabled = bl;
+            txt_StandardDescription.Text = ((Entidades.Standard)cbo_Standars.SelectedItem).Description.ToString();
         }
+
+        private void CreateDefaultStandard()
+        {
+            Entidades.Standard Default = new Entidades.Standard(null, "Seleccionar", "");
+            StandardList.Add(Default);
+        }
+
+        //private void textBox_TextChanged(object sender, EventArgs e)
+        //{
+        //    var bl = !string.IsNullOrEmpty(txt_DecisionProblem.Text) && !string.IsNullOrEmpty(txt_StandardName.Text);
+        //    btn_before.Enabled = bl;
+        //}
 
         private void addStandard_Click(object sender, EventArgs e)
         {
@@ -64,9 +81,9 @@ namespace Aplication
                 {
                     ActualDecision.Name = txt_DecisionProblem.Text;
                     ActualDecision.Date = DateTime.Today;
-                    listView_Standard.Items.Add(txt_StandardName.Text, StandardCounter + 1);
+                    listView_Standard.Items.Add(((Entidades.Standard)cbo_Standars.SelectedItem).Name.ToString());
                     StandardCounter++;
-                    txt_StandardName.Text = String.Empty;
+                    cbo_Standars.SelectedIndex = 0;
                     txt_StandardDescription.Text = String.Empty;
                 }
                 else
@@ -79,7 +96,7 @@ namespace Aplication
         protected bool ValidarCampos()
         {
             bool bandera = true;
-            if (txt_DecisionProblem.Text == String.Empty || txt_StandardName.Text == String.Empty)
+            if (txt_DecisionProblem.Text == String.Empty || cbo_Standars.SelectedIndex == 0)
             {
                 bandera = false;
                 return bandera;
@@ -87,6 +104,11 @@ namespace Aplication
             return bandera;
         }
 
+        private void btn_newStandard_Click(object sender, EventArgs e)
+        {
+            New_Standard createStandard = new New_Standard();
+            createStandard.ShowDialog();
+        }
     }
 }
 
