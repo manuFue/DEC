@@ -35,6 +35,46 @@ namespace Dao
             return StandardList;
         }
 
+        public static List<Standard> GetStandards(string NAME)
+        {
+            Standard Standard = null;
+            List<Standard> StandardList = new List<Standard>();
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = "SELECT IdStandard, NameStandard, DescriptionStandard FROM Standard " +
+                              "WHERE NameStandard LIKE @Name";
+            cmd.Parameters.AddWithValue("@Name", NAME + "%");
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Standard = new Standard();
+                Standard.IdStandard = int.Parse(dr["IdStandard"].ToString());
+                Standard.Name = dr["NameStandard"].ToString();
+                Standard.Description = dr["DescriptionStandard"].ToString();
+
+                StandardList.Add(Standard);
+            }
+            dr.Close();
+            cn.Close();
+            return StandardList;
+        }
+
+        public static void Eliminar(int IdStandard)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"DELETE FROM Standard WHERE IdStandard = @ID";
+            cmd.Parameters.AddWithValue("@ID", IdStandard);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
+
         public static int? Insertar(Standard Standard)
         {
             SqlConnection cn = new SqlConnection();

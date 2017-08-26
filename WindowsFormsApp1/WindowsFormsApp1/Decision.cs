@@ -43,8 +43,6 @@ namespace Aplication
         // COMBO BOX STANDARD
         protected void LoadStandars()
         {
-            // StandardList = (;
-            // CreateDefaultStandard();
             Entidades.Standard Default = new Entidades.Standard(null, "< Seleccionar >", "");
             StandardList = StandardDao.GetStandards();
             StandardList.Insert(0, Default);
@@ -106,8 +104,9 @@ namespace Aplication
 
         private void btn_newStandard_Click(object sender, EventArgs e)
         {
-            New_Standard createStandard = new New_Standard();
-            createStandard.ShowDialog();
+            AdminStandards adminStandards = new AdminStandards();
+            adminStandards.ShowDialog();
+            LoadStandars();
         }
     }
 }

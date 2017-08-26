@@ -67,7 +67,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem});
@@ -109,7 +109,7 @@
             // 
             this.listView_Standard.Location = new System.Drawing.Point(323, 42);
             this.listView_Standard.Name = "listView_Standard";
-            this.listView_Standard.Size = new System.Drawing.Size(174, 105);
+            this.listView_Standard.Size = new System.Drawing.Size(174, 112);
             this.listView_Standard.TabIndex = 11;
             this.listView_Standard.UseCompatibleStateImageBehavior = false;
             this.listView_Standard.View = System.Windows.Forms.View.List;
@@ -150,7 +150,7 @@
             this.btn_newStandard.Name = "btn_newStandard";
             this.btn_newStandard.Size = new System.Drawing.Size(145, 33);
             this.btn_newStandard.TabIndex = 22;
-            this.btn_newStandard.Text = "Nueva Decisión";
+            this.btn_newStandard.Text = "Nuevo Criterio";
             this.btn_newStandard.UseVisualStyleBackColor = true;
             this.btn_newStandard.Click += new System.EventHandler(this.btn_newStandard_Click);
             // 
@@ -246,6 +246,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(523, 414);
             this.Controls.Add(this.pbox_interrogation);
             this.Controls.Add(this.lbl_StandardMax);
@@ -258,6 +259,7 @@
             this.Controls.Add(this.lbl_Standards);
             this.Controls.Add(this.btn_before);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Decision";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

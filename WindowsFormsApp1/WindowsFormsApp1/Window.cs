@@ -15,7 +15,7 @@ namespace Window
     {
         int counter;
         int donation;
-        
+
         public PrincipalWindow()
         {
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace Window
         {
             MessageBox.Show("Thanks a lot! :)");
             donation += 1000;
-            txt_donation.Text = donation.ToString(); 
+            txt_donation.Text = donation.ToString();
         }
 
         private void cerrarXToolStripMenuItem_Click(object sender, EventArgs e)

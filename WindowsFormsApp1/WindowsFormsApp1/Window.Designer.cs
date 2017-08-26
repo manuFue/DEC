@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrincipalWindow));
             this.Next = new System.Windows.Forms.Button();
             this.txt_Counter = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -42,7 +43,7 @@
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(883, 314);
+            this.Next.Location = new System.Drawing.Point(598, 140);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(97, 35);
             this.Next.TabIndex = 0;
@@ -59,11 +60,12 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inicioToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1009, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1000, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -79,14 +81,14 @@
             // donarToolStripMenuItem
             // 
             this.donarToolStripMenuItem.Name = "donarToolStripMenuItem";
-            this.donarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.donarToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.donarToolStripMenuItem.Text = "Donate [ $ ]";
             this.donarToolStripMenuItem.Click += new System.EventHandler(this.donarToolStripMenuItem_Click);
             // 
             // cerrarXToolStripMenuItem
             // 
             this.cerrarXToolStripMenuItem.Name = "cerrarXToolStripMenuItem";
-            this.cerrarXToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cerrarXToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.cerrarXToolStripMenuItem.Text = "Close [ X ]";
             this.cerrarXToolStripMenuItem.Click += new System.EventHandler(this.cerrarXToolStripMenuItem_Click);
             // 
@@ -119,6 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.lbl_windows);
             this.Controls.Add(this.lbl_donation);
@@ -126,14 +129,16 @@
             this.Controls.Add(this.txt_Counter);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PrincipalWindow";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Optimal Decision";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
         }
 
