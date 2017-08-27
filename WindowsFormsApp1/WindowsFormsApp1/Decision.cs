@@ -16,29 +16,36 @@ namespace Aplication
 {
     public partial class Decision : Form
     {
+        // VARIABLES
         public int StandardCounter { get; set; }
         public DecisionProblem ActualDecision = new DecisionProblem();
         public List<Entidades.Standard> StandardList = new List<Entidades.Standard>();
+        public int DecisionID;
 
+        // START COMPONENTS
         public Decision()
         {
             InitializeComponent();
         }
 
-        private void btn_before_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+        //LOAD
         private void Decision_Load(object sender, EventArgs e)
         {
-            btn_before.Enabled = false;
+            if (DecisionDAO.Exists(1))
+                DecisionID = int.Parse(DecisionDAO.MaxNumber().ToString()) + 1;
+            else
+                DecisionID = 1;
+
             txt_ProblemDate.Text = DateTime.Today.ToShortDateString();
             pbox_interrogation.Image = Image.FromFile(Path.Combine(Application.StartupPath, @"Images\interrogation.jpg"));
-
-            // StandardList.Add()
+            pbox_backArrow.Image = Image.FromFile(Path.Combine(Application.StartupPath, @"Images\backArrowSmall.jpg"));
             LoadStandars();
+            dgv_standards.RowHeadersVisible = false;
+            dgv_standards.ColumnHeadersVisible = false;
+            dgv_standards.Columns[0].Visible = false;
+            dgv_standards.Columns[2].Visible = false;
         }
+
 
         // COMBO BOX STANDARD
         protected void LoadStandars()
@@ -69,20 +76,63 @@ namespace Aplication
         //    btn_before.Enabled = bl;
         //}
 
+        // OTHERS
+        protected bool ValidarCampos()
+        {
+            bool bandera = true;
+            if (cbo_Standars.SelectedIndex == 0)
+            {
+                bandera = false;
+                return bandera;
+            }
+            return bandera;
+        }
+
+        private void dgv_Standards_CellClick(object sender, EventArgs e)
+        {
+            btn_delete.Enabled = true;
+            btn_delete.BackColor = System.Drawing.Color.LightCoral;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // PICTURE BOXES
+        private void pbox_backArrow_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // BUTTONS
         private void addStandard_Click(object sender, EventArgs e)
         {
             if (!ValidarCampos())
-            { MessageBox.Show("Debe completar los campos requeridos(*) para continuar.", "Optimal Decision", MessageBoxButtons.OK); }
+            { MessageBox.Show("Debe elegir un criterio para continuar.", "Optimal Decision", MessageBoxButtons.OK); }
             else
             {
                 if (StandardCounter < 7)
                 {
-                    ActualDecision.Name = txt_DecisionProblem.Text;
-                    ActualDecision.Date = DateTime.Today;
-                    listView_Standard.Items.Add(((Entidades.Standard)cbo_Standars.SelectedItem).Name.ToString());
-                    StandardCounter++;
-                    cbo_Standars.SelectedIndex = 0;
-                    txt_StandardDescription.Text = String.Empty;
+                    bool flag = true;
+                    foreach (DataGridViewRow row in dgv_standards.Rows)
+                    {
+                        if (int.Parse(row.Cells[0].Value.ToString()) == int.Parse(cbo_Standars.SelectedValue.ToString()))
+                            flag = false;
+                    }
+                    if (flag)
+                    {
+                        Entidades.Standard selectedStandard = ((Entidades.Standard)cbo_Standars.SelectedItem);
+                        dgv_standards.Rows.Add(selectedStandard.IdStandard, selectedStandard.Name, selectedStandard.Description);
+                        dgv_standards.ClearSelection();
+                        StandardCounter++;
+                        cbo_Standars.SelectedIndex = 0;
+                        txt_StandardDescription.Text = String.Empty;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ese criterio ya se ha agregado al problema de decisión", "Optimal Decision", MessageBoxButtons.OK);
+                    }
                 }
                 else
                 {
@@ -91,23 +141,76 @@ namespace Aplication
             }
         }
 
-        protected bool ValidarCampos()
-        {
-            bool bandera = true;
-            if (txt_DecisionProblem.Text == String.Empty || cbo_Standars.SelectedIndex == 0)
-            {
-                bandera = false;
-                return bandera;
-            }
-            return bandera;
-        }
-
-        private void btn_newStandard_Click(object sender, EventArgs e)
+        private void btn_adminStandars_Click(object sender, EventArgs e)
         {
             AdminStandards adminStandards = new AdminStandards();
             adminStandards.ShowDialog();
             LoadStandars();
         }
+
+        private void btn_value_Click(object sender, EventArgs e)
+        {
+            if (txt_DecisionProblem.Text == "")
+                MessageBox.Show("Por favor ingrese un nombre para el problema de decisión.", "Optimal Decision", MessageBoxButtons.OK);
+            else
+            {
+                if (MessageBox.Show("Una vez valorados los criterios no podrá agregar ni quitar ningún criterio del problema." + Environment.NewLine + " ¿Desea continuar?", "Optimal Decision", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    ActualDecision.IdProblem = DecisionID;
+                    ActualDecision.Name = txt_DecisionProblem.Text;
+                    ActualDecision.Date = DateTime.Today;
+                    DecisionDAO.Insert(ActualDecision);
+                    List<Entidades.Standard> selectedStandars = new List<Entidades.Standard>();
+                    List<Entidades.Standard> selectedStandarsAUX = new List<Entidades.Standard>();
+
+                    foreach (DataGridViewRow row in dgv_standards.Rows)
+                    {
+                        selectedStandars.Add(StandardDao.GetByID(int.Parse(row.Cells[0].Value.ToString())));
+                        selectedStandarsAUX.Add(StandardDao.GetByID(int.Parse(row.Cells[0].Value.ToString())));
+                    }
+
+                    foreach (Entidades.Standard decisionStandard in selectedStandars)
+                    {
+
+                        Pantalla.StandardsPreference preferencesWindow = new Pantalla.StandardsPreference(DecisionID, selectedStandarsAUX);
+                        preferencesWindow.ShowDialog();
+                        if (selectedStandarsAUX.Count == 1)
+                        {
+                            PreferenceDao.Insert(DecisionID, selectedStandarsAUX[0], selectedStandarsAUX[0], 1);
+                            break;
+                        }
+                        //selectedStandarsAUX.RemoveAt(0);
+                    }
+
+                    btn_delete.Enabled = false;
+                    btn_adminStandards.Enabled = false;
+                    btn_addStandard.Enabled = false;
+                    btn_value.Enabled = false;
+                    cbo_Standars.Enabled = false;
+                    btn_adminStandards.BackColor = System.Drawing.Color.DarkGray;
+                    btn_delete.BackColor = System.Drawing.Color.DarkGray;
+                    btn_addStandard.BackColor = System.Drawing.Color.DarkGray;
+                    btn_value.BackColor = System.Drawing.Color.DarkGray;
+
+                    btn_generateAlternatives.Enabled = true;
+                    btn_generateAlternatives.BackColor = System.Drawing.Color.LightSalmon;
+                }
+            }
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            if (dgv_standards.Rows.Count != 0)
+                dgv_standards.Rows.Remove(dgv_standards.CurrentRow);
+            StandardCounter--;
+            if (StandardCounter == 0)
+            {
+                btn_delete.Enabled = false;
+                btn_delete.BackColor = System.Drawing.Color.DarkGray;
+            }
+        }
+
+
     }
 }
 

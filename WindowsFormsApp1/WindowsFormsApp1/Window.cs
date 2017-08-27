@@ -13,21 +13,33 @@ namespace Window
 {
     public partial class PrincipalWindow : Form
     {
-        int counter;
-        int donation;
-
         public PrincipalWindow()
         {
             InitializeComponent();
-            counter = 0;
-            donation = 0;
         }
 
         // FORM - LOAD
         private void PrincipalWindow_Load(object sender, EventArgs e)
-        { this.Text = "Optimal Decision"; }
+        {
+            
+        }
 
-        private void Next_Click(object sender, EventArgs e)
+        private void FormPrincipal_FormClosing(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        // DROP DOWN MENU
+
+        private void cerrarXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Quiere cerrar la aplicación?", "Optimal Decision", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void nuevaDecisiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Decision decisionWindow = new Decision();
             decisionWindow.FormClosing += new FormClosingEventHandler(FormPrincipal_FormClosing);
@@ -35,28 +47,10 @@ namespace Window
             decisionWindow.Show();
         }
 
-        private void FormPrincipal_FormClosing(object sender, EventArgs e)
+        private void administrarCriteriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Show();
-            counter++;
-            txt_Counter.Text = counter.ToString();
-        }
-
-        // DROP DOWN MENU
-
-        private void donarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Thanks a lot! :)");
-            donation += 1000;
-            txt_donation.Text = donation.ToString();
-        }
-
-        private void cerrarXToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Do you want to exit?", "Close the App", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            AdminStandards adminStandards = new AdminStandards();
+            adminStandards.ShowDialog();
         }
     }
 }

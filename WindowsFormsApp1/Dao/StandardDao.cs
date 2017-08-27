@@ -62,7 +62,37 @@ namespace Dao
             return StandardList;
         }
 
-        public static void Eliminar(int IdStandard)
+        public static Standard GetByID(int? IdSTANDARD)
+        {
+            Standard standard = null;
+            SqlConnection cn = new SqlConnection();
+
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT 
+                                [IdStandard], 
+                                [NameStandard],
+                                [DescriptionStandard] FROM Standard WHERE IdStandard = @id";
+            cmd.Parameters.AddWithValue("@id", IdSTANDARD);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                standard = new Standard()
+                {
+                    Name = dr["NameStandard"].ToString(),
+                    Description = dr["DescriptionStandard"].ToString(),
+                    IdStandard = (int)dr["IdStandard"]
+                };
+
+            }
+            dr.Close();
+            cn.Close();
+            return standard;
+        }
+
+        public static void Delete(int IdStandard)
         {
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();
@@ -75,7 +105,7 @@ namespace Dao
             cn.Close();
         }
 
-        public static int? Insertar(Standard Standard)
+        public static int? Insert(Standard Standard)
         {
             SqlConnection cn = new SqlConnection();
             cn.ConnectionString = ConnectionString.Cadena();

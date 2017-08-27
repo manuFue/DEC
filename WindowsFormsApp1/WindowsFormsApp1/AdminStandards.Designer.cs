@@ -39,15 +39,15 @@
             this.btn_accept = new System.Windows.Forms.Button();
             this.gbox_new = new System.Windows.Forms.GroupBox();
             this.dgv_standards = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbox_list = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_search = new System.Windows.Forms.TextBox();
             this.btn_search = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.lbl_admin = new System.Windows.Forms.Label();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbox_new.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_standards)).BeginInit();
             this.gbox_list.SuspendLayout();
@@ -55,13 +55,15 @@
             // 
             // btn_ready
             // 
+            this.btn_ready.BackColor = System.Drawing.Color.LightSalmon;
+            this.btn_ready.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_ready.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ready.Location = new System.Drawing.Point(541, 410);
             this.btn_ready.Name = "btn_ready";
             this.btn_ready.Size = new System.Drawing.Size(118, 26);
             this.btn_ready.TabIndex = 35;
             this.btn_ready.Text = "Listo";
-            this.btn_ready.UseVisualStyleBackColor = true;
+            this.btn_ready.UseVisualStyleBackColor = false;
             this.btn_ready.Click += new System.EventHandler(this.btn_ready_Click);
             // 
             // txt_Name
@@ -102,7 +104,8 @@
             // 
             // btn_accept
             // 
-            this.btn_accept.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btn_accept.BackColor = System.Drawing.Color.LightSalmon;
+            this.btn_accept.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_accept.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_accept.Location = new System.Drawing.Point(452, 66);
             this.btn_accept.Name = "btn_accept";
@@ -137,6 +140,7 @@
             this.id,
             this.name,
             this.description});
+            this.dgv_standards.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgv_standards.Location = new System.Drawing.Point(16, 81);
             this.dgv_standards.MultiSelect = false;
             this.dgv_standards.Name = "dgv_standards";
@@ -145,7 +149,30 @@
             this.dgv_standards.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv_standards.Size = new System.Drawing.Size(554, 156);
             this.dgv_standards.TabIndex = 37;
-            this.dgv_standards.SelectionChanged += new System.EventHandler(this.dgv_standards_SelectionChanged);
+            this.dgv_standards.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Standards_CellClick);
+            // 
+            // id
+            // 
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // name
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.name.DefaultCellStyle = dataGridViewCellStyle1;
+            this.name.HeaderText = "Nombre";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // description
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.description.DefaultCellStyle = dataGridViewCellStyle2;
+            this.description.HeaderText = "Descripción";
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            this.description.Width = 400;
             // 
             // gbox_list
             // 
@@ -180,7 +207,8 @@
             // 
             // btn_search
             // 
-            this.btn_search.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btn_search.BackColor = System.Drawing.Color.LightSalmon;
+            this.btn_search.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_search.Location = new System.Drawing.Point(233, 50);
             this.btn_search.Name = "btn_search";
@@ -192,7 +220,8 @@
             // 
             // btn_delete
             // 
-            this.btn_delete.BackColor = System.Drawing.Color.IndianRed;
+            this.btn_delete.BackColor = System.Drawing.Color.DarkGray;
+            this.btn_delete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_delete.Enabled = false;
             this.btn_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_delete.Location = new System.Drawing.Point(452, 50);
@@ -213,29 +242,6 @@
             this.lbl_admin.Text = "Administrar Criterios";
             this.lbl_admin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // name
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.name.DefaultCellStyle = dataGridViewCellStyle1;
-            this.name.HeaderText = "Nombre";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // description
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.description.DefaultCellStyle = dataGridViewCellStyle2;
-            this.description.HeaderText = "Descripción";
-            this.description.Name = "description";
-            this.description.ReadOnly = true;
-            this.description.Width = 400;
-            // 
             // AdminStandards
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,7 +252,9 @@
             this.Controls.Add(this.gbox_list);
             this.Controls.Add(this.gbox_new);
             this.Controls.Add(this.btn_ready);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "AdminStandards";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Optimal Decision";

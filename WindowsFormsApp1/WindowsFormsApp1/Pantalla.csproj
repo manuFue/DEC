@@ -69,6 +69,12 @@
     <Compile Include="AdminStandards.Designer.cs">
       <DependentUpon>AdminStandards.cs</DependentUpon>
     </Compile>
+    <Compile Include="StandardsPreference.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StandardsPreference.Designer.cs">
+      <DependentUpon>StandardsPreference.cs</DependentUpon>
+    </Compile>
     <Compile Include="Window.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminStandards.resx">
       <DependentUpon>AdminStandards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StandardsPreference.resx">
+      <DependentUpon>StandardsPreference.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window.resx">
       <DependentUpon>Window.cs</DependentUpon>
@@ -124,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Images\embossing-003fn_gallery_large.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Images\left-254094_960_720.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
