@@ -19,7 +19,7 @@ namespace Dao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = "SELECT IdStandard, NameStandard, DescriptionStandard FROM Standard";
+            cmd.CommandText = "SELECT IdStandard, NameStandard, DescriptionStandard, Optimization FROM Standard";
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -27,6 +27,7 @@ namespace Dao
                 Standard.IdStandard = int.Parse(dr["IdStandard"].ToString());
                 Standard.Name = dr["NameStandard"].ToString();
                 Standard.Description = dr["DescriptionStandard"].ToString();
+                Standard.Optimization = Convert.ToBoolean(dr["Optimization"]);
 
                 StandardList.Add(Standard);
             }
@@ -44,7 +45,7 @@ namespace Dao
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = "SELECT IdStandard, NameStandard, DescriptionStandard FROM Standard " +
+            cmd.CommandText = "SELECT IdStandard, NameStandard, DescriptionStandard, Optimization FROM Standard " +
                               "WHERE NameStandard LIKE @Name";
             cmd.Parameters.AddWithValue("@Name", NAME + "%");
             SqlDataReader dr = cmd.ExecuteReader();
@@ -54,6 +55,7 @@ namespace Dao
                 Standard.IdStandard = int.Parse(dr["IdStandard"].ToString());
                 Standard.Name = dr["NameStandard"].ToString();
                 Standard.Description = dr["DescriptionStandard"].ToString();
+                Standard.Optimization = Convert.ToBoolean(dr["Optimization"]);
 
                 StandardList.Add(Standard);
             }
@@ -74,7 +76,8 @@ namespace Dao
             cmd.CommandText = @"SELECT 
                                 [IdStandard], 
                                 [NameStandard],
-                                [DescriptionStandard] FROM Standard WHERE IdStandard = @id";
+                                [DescriptionStandard],
+                                [Optimization] FROM Standard WHERE IdStandard = @id";
             cmd.Parameters.AddWithValue("@id", IdSTANDARD);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
@@ -83,7 +86,8 @@ namespace Dao
                 {
                     Name = dr["NameStandard"].ToString(),
                     Description = dr["DescriptionStandard"].ToString(),
-                    IdStandard = (int)dr["IdStandard"]
+                    IdStandard = (int)dr["IdStandard"],
+                    Optimization = Convert.ToBoolean(dr["Optimization"])
                 };
 
             }
@@ -113,10 +117,11 @@ namespace Dao
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = @"INSERT INTO Standard (
-                                    NameStandard, DescriptionStandard) values (
-                                    @NameStandard, @DescriptionStandard);select Scope_Identity() as IdStandard";
+                                    NameStandard, DescriptionStandard, Optimization) values (
+                                    @NameStandard, @DescriptionStandard, @Optimization);select Scope_Identity() as IdStandard";
             cmd.Parameters.AddWithValue("@NameStandard", Standard.Name);
             cmd.Parameters.AddWithValue("@DescriptionStandard", Standard.Description);
+            cmd.Parameters.AddWithValue("@Optimization", Standard.Optimization);
             Standard.IdStandard = Convert.ToInt32(cmd.ExecuteScalar());
             cn.Close();
             return Standard.IdStandard;

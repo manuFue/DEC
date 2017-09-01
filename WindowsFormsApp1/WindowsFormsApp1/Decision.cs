@@ -50,7 +50,7 @@ namespace Aplication
         // COMBO BOX STANDARD
         protected void LoadStandars()
         {
-            Entidades.Standard Default = new Entidades.Standard(null, "< Seleccionar >", "");
+            Entidades.Standard Default = new Entidades.Standard(null, "< Seleccionar >", "",true);
             StandardList = StandardDao.GetStandards();
             StandardList.Insert(0, Default);
             cbo_Standars.DataSource = StandardList;
@@ -66,7 +66,7 @@ namespace Aplication
 
         private void CreateDefaultStandard()
         {
-            Entidades.Standard Default = new Entidades.Standard(null, "Seleccionar", "");
+            Entidades.Standard Default = new Entidades.Standard(null, "Seleccionar", "", true);
             StandardList.Add(Default);
         }
 
@@ -171,15 +171,17 @@ namespace Aplication
 
                     foreach (Entidades.Standard decisionStandard in selectedStandars)
                     {
+                        if (selectedStandarsAUX.Count > 1)
+                        {
+                            Pantalla.StandardsPreference preferencesWindow = new Pantalla.StandardsPreference(DecisionID, selectedStandarsAUX);
+                            preferencesWindow.ShowDialog();
+                        }
 
-                        Pantalla.StandardsPreference preferencesWindow = new Pantalla.StandardsPreference(DecisionID, selectedStandarsAUX);
-                        preferencesWindow.ShowDialog();
                         if (selectedStandarsAUX.Count == 1)
                         {
                             PreferenceDao.Insert(DecisionID, selectedStandarsAUX[0], selectedStandarsAUX[0], 1);
                             break;
                         }
-                        //selectedStandarsAUX.RemoveAt(0);
                     }
 
                     btn_delete.Enabled = false;
