@@ -31,12 +31,14 @@ namespace Aplication
         private void loadStandard(int ID)
         {
             actualStandard = StandardDao.GetByID(ID);
-            txt_Name.Text = actualStandard.Name.ToString();
+            txt_Name.Text = actualStandard.Name.ToString().ToUpper();
             txt_Description.Text = actualStandard.Description.ToString();
             if (actualStandard.Optimization)
                 radiob_max.Checked = true;
             else
                 radiob_min.Checked = true;
+            btn_modify.Enabled = true;
+            btn_modify.BackColor = System.Drawing.Color.Goldenrod;
         }
 
         // UPDATES
@@ -48,9 +50,7 @@ namespace Aplication
                 dgv_standards.Rows.Add(standard.IdStandard, standard.Name, standard.Description, optimizationWay(standard.Optimization));
                 dgv_standards.Columns[0].Visible = false;
             }
-            dgv_standards.ClearSelection();
-            btn_delete.Enabled = false;
-            btn_delete.BackColor = System.Drawing.Color.DarkGray;
+            disableDelete();
         }
 
         private void clearFields()
@@ -58,6 +58,7 @@ namespace Aplication
             txt_Description.Text = String.Empty;
             txt_Name.Text = String.Empty;
             radiob_max.Checked = true;
+            disableModify();
         }
 
         // BUTTONS
@@ -84,12 +85,6 @@ namespace Aplication
             }
         }
 
-        private void btn_search_Click(object sender, EventArgs e)
-        {
-            updateStandards(StandardDao.GetStandards(txt_search.Text));
-            clearFields();
-        }
-
         private void btn_delete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Está seguro de eliminar este criterio?", "Optimal Decision", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -99,6 +94,25 @@ namespace Aplication
                 clearFields();
                 updateStandards(StandardDao.GetStandards());
             }
+        }
+
+        private void btn_modify_Click(object sender, EventArgs e)
+        {
+            if (StandardDao.GetByID(int.Parse(dgv_standards.CurrentRow.Cells[0].Value.ToString())) != null)
+            {
+                actualStandard.Name = txt_Name.Text;
+                actualStandard.Description = txt_Description.Text;
+                actualStandard.Optimization = optimizacionValue;
+                StandardDao.Update(actualStandard);
+                clearFields();
+                updateStandards(StandardDao.GetStandards());
+            }
+        }
+
+        private void btn_Clean_Click(object sender, EventArgs e)
+        {
+            clearFields();
+            disableDelete();
         }
 
         // OPTIMIZATION
@@ -121,6 +135,44 @@ namespace Aplication
                 return "Minimizante";
         }
 
+        // DISABLE
+
+        private void disableDelete()
+        {
+            dgv_standards.ClearSelection();
+            btn_delete.Enabled = false;
+            btn_delete.BackColor = System.Drawing.Color.DarkGray;
+        }
+
+        private void disableModify()
+        {
+            btn_modify.Enabled = false;
+            btn_modify.BackColor = System.Drawing.Color.DarkGray;
+        }
+
+        // CHANGE        
+
+        private void dgv_Standards_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            loadStandard(int.Parse(dgv_standards.CurrentRow.Cells[0].Value.ToString()));
+
+            btn_delete.Enabled = true;
+            btn_delete.BackColor = System.Drawing.Color.LightCoral;
+        }
+
+        private void txt_search_TextChanged(object sender, EventArgs e)
+        {
+            clearFields();
+            disableDelete();
+            foreach (DataGridViewRow current in dgv_standards.Rows)
+            {
+                if ((current.Cells[1].Value.ToString().StartsWith(txt_search.Text, true, null)))
+                    current.Visible = true;
+                else
+                    current.Visible = false;
+            }
+        }
+
         // OTHER
 
         protected bool validateFields()
@@ -134,13 +186,5 @@ namespace Aplication
             return bandera;
         }
 
-        private void dgv_Standards_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            btn_delete.Enabled = true;
-            btn_delete.BackColor = System.Drawing.Color.LightCoral;
-
-            loadStandard(int.Parse(dgv_standards.CurrentRow.Cells[0].Value.ToString()));
-        }
-        
     }
 }

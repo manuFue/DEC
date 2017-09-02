@@ -1,4 +1,6 @@
-﻿namespace Aplication
+﻿using System.Windows.Forms;
+
+namespace Aplication
 {
     partial class Decision
     {
@@ -307,6 +309,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.dddddddd;
             this.ClientSize = new System.Drawing.Size(523, 463);
             this.Controls.Add(this.btn_generateAlternatives);
             this.Controls.Add(this.label1);
@@ -333,7 +336,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbox_interrogation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
         }
 
         #endregion

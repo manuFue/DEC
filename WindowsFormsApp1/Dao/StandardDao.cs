@@ -96,6 +96,26 @@ namespace Dao
             return standard;
         }
 
+        public static void Update(Entidades.Standard standard)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = ConnectionString.Cadena();
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE Standard SET 
+                                    NameStandard = @Name,
+                                    DescriptionStandard = @Description,
+                                    Optimization = @Optimization                                    
+                                WHERE IdStandard = @ID";
+            cmd.Parameters.AddWithValue("@ID", standard.IdStandard);
+            cmd.Parameters.AddWithValue("@Name", standard.Name);
+            cmd.Parameters.AddWithValue("@Description", standard.Description);
+            cmd.Parameters.AddWithValue("@Optimization", standard.Optimization);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
+
         public static void Delete(int IdStandard)
         {
             SqlConnection cn = new SqlConnection();
