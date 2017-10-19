@@ -35,5 +35,19 @@ namespace Entidades
         {
             return preferences.Exists(x => x.comparedStandard.IdStandard == standardId);
         }
+
+        public void setNormalValue(Entidades.Standard standard, double Value)
+        {
+            int listIndex;
+            listIndex = preferences.FindIndex(x => x.comparedStandard.IdStandard == standard.IdStandard);
+            preferences[listIndex].setNormalValue(Value);
+        }
+
+        public double getNormalValue(Entidades.Standard standard)
+        {
+            int listIndex;
+            listIndex = preferences.FindIndex(x => x.comparedStandard.IdStandard == standard.IdStandard);
+            return preferences[listIndex].getNormalValue();
+        }
     }
 }

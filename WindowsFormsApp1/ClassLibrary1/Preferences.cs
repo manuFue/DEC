@@ -10,6 +10,7 @@ namespace Entidades
     {
         public Entidades.Standard comparedStandard { get; set; }
         public double value { get; set; }
+        private double normalValue;
 
         public Preferences() {}
 
@@ -17,6 +18,16 @@ namespace Entidades
         {
             this.comparedStandard = STANDARD;
             this.value = VALUE;
+        }
+
+        public void setNormalValue(double Value)
+        {
+            this.normalValue = Value;
+        }
+
+        public double getNormalValue()
+        {
+            return normalValue;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Aplication
         public DecisionProblem ActualDecision = new DecisionProblem();
         public List<Entidades.Standard> StandardList = new List<Entidades.Standard>();
         public int DecisionID;
+        public List<StandardPreferencesEntity> StandardPreferences = new List<StandardPreferencesEntity>();
 
         // START COMPONENTS
         public Decision()
@@ -111,6 +112,45 @@ namespace Aplication
             this.Close();
         }
 
+        // SET WEIGHTS
+        private void setStandard_Weight(List<Entidades.Standard> standardList)
+        {
+            double[] totalValues = new double[standardList.Count()];
+            double[] totalNormalValues = new double[standardList.Count()];
+
+            for (int k = 0; k < standardList.Count(); k++)
+            {
+                totalValues[k] = 0;
+                foreach (StandardPreferencesEntity preferenceEntity in StandardPreferences)
+                {
+                    int preference_Index = preferenceEntity.preferences.FindIndex(x => x.comparedStandard.IdStandard == standardList[k].IdStandard);
+                    totalValues[k] += preferenceEntity.preferences[preference_Index].value;
+                }
+            }
+
+            for (int k = 0; k < standardList.Count(); k++)
+            {
+                for (int i = 0; i < standardList.Count(); i++)
+                {
+                    int preferenceEntityList_Index = StandardPreferences.FindIndex(x => x.mainStandard.IdStandard == standardList[i].IdStandard);
+                    int preference_Index = StandardPreferences[preferenceEntityList_Index].preferences.FindIndex(x => x.comparedStandard.IdStandard == standardList[k].IdStandard);
+                    double normalValue = (StandardPreferences[preferenceEntityList_Index].preferences[preference_Index].value) / totalValues[k];
+                    StandardPreferences[preferenceEntityList_Index].preferences[preference_Index].setNormalValue(normalValue);
+                }
+            }
+
+            for (int k = 0; k < standardList.Count(); k++)
+            {
+                int preferenceEntityList_Index = StandardPreferences.FindIndex(x => x.mainStandard.IdStandard == standardList[k].IdStandard);
+                foreach (Preferences preference in StandardPreferences[preferenceEntityList_Index].preferences)
+                {
+                    totalNormalValues[k] += preference.getNormalValue();
+                }
+                StandardWeight thisStandard = new StandardWeight(standardList[k], totalNormalValues[k]);
+                ActualDecision.addStandard(thisStandard);
+            }
+        }
+
         // PICTURE BOXES
         private void pbox_backArrow_Click(object sender, EventArgs e)
         {
@@ -139,8 +179,6 @@ namespace Aplication
                         dgv_standards.ClearSelection();
                         StandardCounter++;
 
-                        //StandardList.Remove(StandardList.Find(x => x.IdStandard == selectedStandard.IdStandard));
-                        //refreshStandards();
                         LoadStandars();
                         txt_StandardDescription.Text = String.Empty;
                     }
@@ -173,24 +211,21 @@ namespace Aplication
             {
                 if (MessageBox.Show("Una vez valorados los criterios no podrá agregar ni quitar ningún criterio del problema." + Environment.NewLine + " ¿Desea continuar?", "Optimal Decision", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
+                    List<Entidades.Standard> selectedStandards = new List<Entidades.Standard>();
+                    foreach (DataGridViewRow row in dgv_standards.Rows)
+                        selectedStandards.Add(StandardDao.GetByID(int.Parse(row.Cells[0].Value.ToString())));
+
+                    Pantalla.StandardsPreference preferencesWindow = new Pantalla.StandardsPreference(selectedStandards);
+                    preferencesWindow.ShowDialog();
+
                     ActualDecision.IdProblem = DecisionID;
                     ActualDecision.Name = txt_DecisionProblem.Text;
                     ActualDecision.Date = DateTime.Today;
-                    List<Entidades.Standard> selectedStandards = new List<Entidades.Standard>();
 
-                    foreach (DataGridViewRow row in dgv_standards.Rows)
-                    {
-                        selectedStandards.Add(StandardDao.GetByID(int.Parse(row.Cells[0].Value.ToString())));
-                    }
-
-                    ActualDecision.StandardList = selectedStandards;
-
-                    Pantalla.StandardsPreference preferencesWindow = new Pantalla.StandardsPreference(ActualDecision, ActualDecision.StandardList);
-                    preferencesWindow.ShowDialog();
-
-
+                    StandardPreferences = preferencesWindow.getStandardPreferencesList();
                     // CALCULAR PESOS CON ESA LISTA DE PREFERENCIAS SOBRE LOS CRITERIOS
-                    preferencesWindow.getStandardPreferencesList();
+                    setStandard_Weight(selectedStandards);
+
 
                     btn_delete.Enabled = false;
                     btn_adminStandards.Enabled = false;
@@ -216,7 +251,7 @@ namespace Aplication
                 dgv_standards.Rows.Remove(dgv_standards.CurrentRow);
                 LoadStandars();
             }
-                
+
             StandardCounter--;
             if (StandardCounter == 0)
             {
@@ -224,8 +259,6 @@ namespace Aplication
                 btn_delete.BackColor = System.Drawing.Color.DarkGray;
             }
         }
-
-
     }
 }
 

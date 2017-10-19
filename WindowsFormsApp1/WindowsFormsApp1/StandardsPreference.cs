@@ -14,28 +14,28 @@ namespace Pantalla
 {
     public partial class StandardsPreference : Form
     {
-        public int standardCounter = 70;
         public List<Entidades.Standard> standardList;
         public Entidades.Standard mainStandard;
-        public DecisionProblem decision;
-        public List<string> preferences = new List<string> { "Igualmente Importante.", "Moderadamente Importante.", "Fuertemente más Importante.", "Muy Fuertemente Importante.", "Absolutamente más Importante." };
+
         private List<StandardPreferencesEntity> standardPreferenceList = new List<StandardPreferencesEntity>();
+        private int standardCounter = 70;
+        private Preferences thisPreference;
         private int listIndex;
+
         private Button leftButton = new Button();
         private Button rightButton = new Button();
-        private Preferences thisPreference;
+
 
         public List<StandardPreferencesEntity> getStandardPreferencesList()
         {
             return standardPreferenceList;
         }
 
-        public StandardsPreference(DecisionProblem DECISION, List<Entidades.Standard> StandardList)
+        public StandardsPreference(List<Entidades.Standard> StandardList)
         {
             InitializeComponent();
             this.standardList = StandardList;
             this.mainStandard = StandardList[0];
-            this.decision = DECISION;
         }
 
         private void loadPreferencesList(List<Entidades.Standard> list)
@@ -43,6 +43,8 @@ namespace Pantalla
             for (int i = 0; i < list.Count(); i++)
             {
                 StandardPreferencesEntity StandardPreferences = new StandardPreferencesEntity(list[i]);
+                Preferences preference = new Preferences(list[i], 1);
+                StandardPreferences.addPreference(preference);
                 standardPreferenceList.Add(StandardPreferences);
             }
         }
@@ -91,34 +93,6 @@ namespace Pantalla
                     standardCounter += 80;
 
                     optionCounter += 1;
-                    //AddHandler btn_firstChoice, AddressOf boton1_click
-
-                    //btn_Finish.Text = "Empezar";
-
-                    //if (standardList[i].IdStandard != mainStandard.IdStandard)
-                    //{
-
-
-                    //preferenceIndex = standarCounter + 35;
-                    //standarCounter += 25;
-                    //foreach (string preference in preferences)
-                    //{
-                    //    RadioButton radio = new RadioButton();
-                    //    radio.Text = preference.ToString();
-                    //    radio.Tag = numberPreference;
-                    //    radio.Location = new System.Drawing.Point(10, standarCounter);
-                    //    radio.Size = new System.Drawing.Size(200, 23);
-                    //    Controls.Add(radio);
-                    //    numberPreference++;
-                    //    // preferenceIndex += 25;
-                    //    standarCounter += 25;
-                    //    //preferenceLength += 100;
-                    //}
-
-                    // preferenceIndex = 0;
-                    //preferenceLength = 10;
-                    //standarCounter += 25;
-                    //}
                 }
 
                 if (standardList.Count > 2)
@@ -141,6 +115,7 @@ namespace Pantalla
         private void btn_Finish_Click(object sender, EventArgs e)
         {
             if (validateSelections())
+
                 this.Close();
             else
                 MessageBox.Show("Debe indicar una preferencia para cada par de criterios antes de continuar.", "Optimal Decision", MessageBoxButtons.OK);
@@ -150,7 +125,6 @@ namespace Pantalla
         {
             Button mybutton = sender as Button;
 
-            bool optionsHasValue = true;
             rightButton = this.Controls.OfType<Button>().Where(x => x.Location.Y == mybutton.Location.Y && x.Location.X == 350).ToList()[0];
             leftButton = this.Controls.OfType<Button>().Where(x => x.Location.Y == mybutton.Location.Y && x.Location.X == 150).ToList()[0];
 
