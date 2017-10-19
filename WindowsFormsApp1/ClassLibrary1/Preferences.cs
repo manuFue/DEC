@@ -9,11 +9,11 @@ namespace Entidades
     public class Preferences
     {
         public Entidades.Standard comparedStandard { get; set; }
-        public int value { get; set; }
+        public double value { get; set; }
 
         public Preferences() {}
 
-        public Preferences(Entidades.Standard STANDARD, int VALUE)
+        public Preferences(Entidades.Standard STANDARD, double VALUE)
         {
             this.comparedStandard = STANDARD;
             this.value = VALUE;

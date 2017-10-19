@@ -72,6 +72,7 @@ namespace Aplication
             // 
             // lbl_Standards
             // 
+            this.lbl_Standards.BackColor = System.Drawing.Color.Transparent;
             this.lbl_Standards.Font = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Standards.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbl_Standards.Location = new System.Drawing.Point(10, 151);
@@ -100,6 +101,7 @@ namespace Aplication
             this.gbox_Standards.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbox_Standards.BackColor = System.Drawing.Color.Transparent;
             this.gbox_Standards.Controls.Add(this.btn_delete);
             this.gbox_Standards.Controls.Add(this.dgv_standards);
             this.gbox_Standards.Controls.Add(this.btn_value);
@@ -219,6 +221,7 @@ namespace Aplication
             // 
             // lbl_Date
             // 
+            this.lbl_Date.BackColor = System.Drawing.Color.Transparent;
             this.lbl_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Date.Location = new System.Drawing.Point(15, 91);
             this.lbl_Date.Name = "lbl_Date";
@@ -237,6 +240,7 @@ namespace Aplication
             // 
             // lbl_ProblemImportant
             // 
+            this.lbl_ProblemImportant.BackColor = System.Drawing.Color.Transparent;
             this.lbl_ProblemImportant.Font = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_ProblemImportant.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbl_ProblemImportant.Location = new System.Drawing.Point(10, 30);
@@ -249,6 +253,7 @@ namespace Aplication
             // 
             // lbl_StandardMax
             // 
+            this.lbl_StandardMax.BackColor = System.Drawing.Color.Transparent;
             this.lbl_StandardMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_StandardMax.Location = new System.Drawing.Point(117, 160);
             this.lbl_StandardMax.Name = "lbl_StandardMax";
@@ -259,6 +264,7 @@ namespace Aplication
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -273,6 +279,7 @@ namespace Aplication
             // 
             // pbox_backArrow
             // 
+            this.pbox_backArrow.BackColor = System.Drawing.Color.Transparent;
             this.pbox_backArrow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbox_backArrow.Location = new System.Drawing.Point(12, 432);
             this.pbox_backArrow.Name = "pbox_backArrow";
@@ -283,6 +290,7 @@ namespace Aplication
             // 
             // pbox_interrogation
             // 
+            this.pbox_interrogation.BackColor = System.Drawing.Color.Transparent;
             this.pbox_interrogation.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbox_interrogation.InitialImage")));
             this.pbox_interrogation.Location = new System.Drawing.Point(336, 20);
             this.pbox_interrogation.Name = "pbox_interrogation";
@@ -336,7 +344,7 @@ namespace Aplication
             ((System.ComponentModel.ISupportInitialize)(this.pbox_interrogation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+
         }
 
         #endregion

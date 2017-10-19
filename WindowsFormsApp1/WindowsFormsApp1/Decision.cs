@@ -46,34 +46,46 @@ namespace Aplication
             dgv_standards.Columns[2].Visible = false;
         }
 
-
         // COMBO BOX STANDARD
         protected void LoadStandars()
         {
-            Entidades.Standard Default = new Entidades.Standard(null, "< Seleccionar >", "",true);
+            Entidades.Standard Default = new Entidades.Standard(null, "< Seleccionar >", "", true);
             StandardList = StandardDao.GetStandards();
             StandardList.Insert(0, Default);
+            if (dgv_standards.RowCount > 0)
+            {
+                foreach (DataGridViewRow row in dgv_standards.Rows)
+                {
+                    StandardList.Remove(StandardList.Find(x => x.IdStandard == Convert.ToInt32(row.Cells[0].Value.ToString())));
+                }
+            }
+            cbo_Standars.DataSource = null;
             cbo_Standars.DataSource = StandardList;
             cbo_Standars.DisplayMember = "Name";
             cbo_Standars.ValueMember = "IdStandard";
             cbo_Standars.SelectedIndex = 0;
+            //refreshStandards();
         }
+
+        //private void refreshStandards()
+        //{
+        //    cbo_Standars.DataSource = null;
+        //    cbo_Standars.DataSource = StandardList;
+        //    cbo_Standars.DisplayMember = "Name";
+        //    cbo_Standars.ValueMember = "IdStandard";
+        //    cbo_Standars.SelectedIndex = 0;
+        //}
 
         private void cbo_Standars_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txt_StandardDescription.Text = ((Entidades.Standard)cbo_Standars.SelectedItem).Description.ToString();
+            if (cbo_Standars.DataSource != null)
+                txt_StandardDescription.Text = ((Entidades.Standard)cbo_Standars.SelectedItem).Description.ToString();
         }
 
-        private void CreateDefaultStandard()
-        {
-            Entidades.Standard Default = new Entidades.Standard(null, "Seleccionar", "", true);
-            StandardList.Add(Default);
-        }
-
-        //private void textBox_TextChanged(object sender, EventArgs e)
+        //private void CreateDefaultStandard()
         //{
-        //    var bl = !string.IsNullOrEmpty(txt_DecisionProblem.Text) && !string.IsNullOrEmpty(txt_StandardName.Text);
-        //    btn_before.Enabled = bl;
+        //    Entidades.Standard Default = new Entidades.Standard(null, "Seleccionar", "", true);
+        //    StandardList.Add(Default);
         //}
 
         // OTHERS
@@ -126,7 +138,10 @@ namespace Aplication
                         dgv_standards.Rows.Add(selectedStandard.IdStandard, selectedStandard.Name, selectedStandard.Description);
                         dgv_standards.ClearSelection();
                         StandardCounter++;
-                        cbo_Standars.SelectedIndex = 0;
+
+                        //StandardList.Remove(StandardList.Find(x => x.IdStandard == selectedStandard.IdStandard));
+                        //refreshStandards();
+                        LoadStandars();
                         txt_StandardDescription.Text = String.Empty;
                     }
                     else
@@ -152,6 +167,8 @@ namespace Aplication
         {
             if (txt_DecisionProblem.Text == "")
                 MessageBox.Show("Por favor ingrese un nombre para el problema de decisión.", "Optimal Decision", MessageBoxButtons.OK);
+            else if (dgv_standards.Rows.Count < 4)
+                MessageBox.Show("Debe seleccionar al menos 4 criterios para el problema de decisión.", "Optimal Decision", MessageBoxButtons.OK);
             else
             {
                 if (MessageBox.Show("Una vez valorados los criterios no podrá agregar ni quitar ningún criterio del problema." + Environment.NewLine + " ¿Desea continuar?", "Optimal Decision", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -159,30 +176,21 @@ namespace Aplication
                     ActualDecision.IdProblem = DecisionID;
                     ActualDecision.Name = txt_DecisionProblem.Text;
                     ActualDecision.Date = DateTime.Today;
-                    DecisionDAO.Insert(ActualDecision);
-                    List<Entidades.Standard> selectedStandars = new List<Entidades.Standard>();
-                    List<Entidades.Standard> selectedStandarsAUX = new List<Entidades.Standard>();
+                    List<Entidades.Standard> selectedStandards = new List<Entidades.Standard>();
 
                     foreach (DataGridViewRow row in dgv_standards.Rows)
                     {
-                        selectedStandars.Add(StandardDao.GetByID(int.Parse(row.Cells[0].Value.ToString())));
-                        selectedStandarsAUX.Add(StandardDao.GetByID(int.Parse(row.Cells[0].Value.ToString())));
+                        selectedStandards.Add(StandardDao.GetByID(int.Parse(row.Cells[0].Value.ToString())));
                     }
 
-                    foreach (Entidades.Standard decisionStandard in selectedStandars)
-                    {
-                        if (selectedStandarsAUX.Count > 1)
-                        {
-                            Pantalla.StandardsPreference preferencesWindow = new Pantalla.StandardsPreference(DecisionID, selectedStandarsAUX);
-                            preferencesWindow.ShowDialog();
-                        }
+                    ActualDecision.StandardList = selectedStandards;
 
-                        if (selectedStandarsAUX.Count == 1)
-                        {
-                            PreferenceDao.Insert(DecisionID, selectedStandarsAUX[0], selectedStandarsAUX[0], 1);
-                            break;
-                        }
-                    }
+                    Pantalla.StandardsPreference preferencesWindow = new Pantalla.StandardsPreference(ActualDecision, ActualDecision.StandardList);
+                    preferencesWindow.ShowDialog();
+
+
+                    // CALCULAR PESOS CON ESA LISTA DE PREFERENCIAS SOBRE LOS CRITERIOS
+                    preferencesWindow.getStandardPreferencesList();
 
                     btn_delete.Enabled = false;
                     btn_adminStandards.Enabled = false;
@@ -198,12 +206,17 @@ namespace Aplication
                     btn_generateAlternatives.BackColor = System.Drawing.Color.LightSalmon;
                 }
             }
+
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
             if (dgv_standards.Rows.Count != 0)
+            {
                 dgv_standards.Rows.Remove(dgv_standards.CurrentRow);
+                LoadStandars();
+            }
+                
             StandardCounter--;
             if (StandardCounter == 0)
             {

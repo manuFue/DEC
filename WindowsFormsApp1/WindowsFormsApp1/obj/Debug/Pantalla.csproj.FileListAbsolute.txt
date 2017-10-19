@@ -16,3 +16,4 @@ C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFor
 C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Dao.dll.config
 C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Aplication.AdminStandards.resources
 C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Pantalla.StandardsPreference.resources
+C:\Deckjazz\Proyectos\DEC\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\Pantalla.Options.resources

@@ -37,8 +37,6 @@ namespace Aplication
                 radiob_max.Checked = true;
             else
                 radiob_min.Checked = true;
-            btn_modify.Enabled = true;
-            btn_modify.BackColor = System.Drawing.Color.Goldenrod;
         }
 
         // UPDATES
@@ -50,7 +48,6 @@ namespace Aplication
                 dgv_standards.Rows.Add(standard.IdStandard, standard.Name, standard.Description, optimizationWay(standard.Optimization));
                 dgv_standards.Columns[0].Visible = false;
             }
-            disableDelete();
         }
 
         private void clearFields()
@@ -58,7 +55,7 @@ namespace Aplication
             txt_Description.Text = String.Empty;
             txt_Name.Text = String.Empty;
             radiob_max.Checked = true;
-            disableModify();
+            txt_search.Text = String.Empty;
         }
 
         // BUTTONS
@@ -67,7 +64,7 @@ namespace Aplication
             this.Close();
         }
 
-        private void btn_accept_Click(object sender, EventArgs e)
+        private void btn_addNew_Click(object sender, EventArgs e)
         {
             if (!validateFields())
             { MessageBox.Show("Debe ingresar un Nombre y Descripción para continuar.", "Optimal Decision", MessageBoxButtons.OK); }
@@ -93,6 +90,9 @@ namespace Aplication
                 MessageBox.Show("Criterio Eliminado con éxito.", "Optimal Decision", MessageBoxButtons.OK);
                 clearFields();
                 updateStandards(StandardDao.GetStandards());
+                enableAddNew();
+                disableModify();
+                disableDelete();
             }
         }
 
@@ -106,12 +106,16 @@ namespace Aplication
                 StandardDao.Update(actualStandard);
                 clearFields();
                 updateStandards(StandardDao.GetStandards());
+                disableModify();
+                disableDelete();
             }
         }
 
         private void btn_Clean_Click(object sender, EventArgs e)
         {
             clearFields();
+            enableAddNew();
+            disableModify();
             disableDelete();
         }
 
@@ -135,8 +139,25 @@ namespace Aplication
                 return "Minimizante";
         }
 
-        // DISABLE
+        // ENABLE & DISABLE
 
+        private void enableAddNew()
+        {
+            btn_addNew.Enabled = true;
+            btn_addNew.BackColor = System.Drawing.Color.Goldenrod;
+        }
+        private void disableAddNew()
+        {
+            btn_addNew.Enabled = false;
+            btn_addNew.BackColor = System.Drawing.Color.DarkGray;
+
+        }
+
+        private void enableDelete()
+        {
+            btn_delete.Enabled = true;
+            btn_delete.BackColor = System.Drawing.Color.LightCoral;
+        }
         private void disableDelete()
         {
             dgv_standards.ClearSelection();
@@ -144,6 +165,11 @@ namespace Aplication
             btn_delete.BackColor = System.Drawing.Color.DarkGray;
         }
 
+        private void enableModify()
+        {
+            btn_modify.Enabled = true;
+            btn_modify.BackColor = System.Drawing.Color.Goldenrod;
+        }
         private void disableModify()
         {
             btn_modify.Enabled = false;
@@ -156,14 +182,13 @@ namespace Aplication
         {
             loadStandard(int.Parse(dgv_standards.CurrentRow.Cells[0].Value.ToString()));
 
-            btn_delete.Enabled = true;
-            btn_delete.BackColor = System.Drawing.Color.LightCoral;
+            enableModify();
+            enableDelete();
+            disableAddNew();
         }
 
         private void txt_search_TextChanged(object sender, EventArgs e)
         {
-            clearFields();
-            disableDelete();
             foreach (DataGridViewRow current in dgv_standards.Rows)
             {
                 if ((current.Cells[1].Value.ToString().StartsWith(txt_search.Text, true, null)))
@@ -171,6 +196,10 @@ namespace Aplication
                 else
                     current.Visible = false;
             }
+            clearFields();
+            enableAddNew();
+            disableModify();
+            disableDelete();
         }
 
         // OTHER

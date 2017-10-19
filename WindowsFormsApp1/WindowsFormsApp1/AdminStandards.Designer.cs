@@ -38,7 +38,7 @@ namespace Aplication
             this.lbl_Name = new System.Windows.Forms.Label();
             this.txt_Description = new System.Windows.Forms.TextBox();
             this.lbl_description = new System.Windows.Forms.Label();
-            this.btn_accept = new System.Windows.Forms.Button();
+            this.btn_addNew = new System.Windows.Forms.Button();
             this.gbox_new = new System.Windows.Forms.GroupBox();
             this.btn_modify = new System.Windows.Forms.Button();
             this.panel_radiobuttons = new System.Windows.Forms.Panel();
@@ -114,18 +114,18 @@ namespace Aplication
             this.lbl_description.Text = "Descripción :";
             this.lbl_description.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btn_accept
+            // btn_addNew
             // 
-            this.btn_accept.BackColor = System.Drawing.Color.Goldenrod;
-            this.btn_accept.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_accept.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_accept.Location = new System.Drawing.Point(452, 20);
-            this.btn_accept.Name = "btn_accept";
-            this.btn_accept.Size = new System.Drawing.Size(118, 29);
-            this.btn_accept.TabIndex = 34;
-            this.btn_accept.Text = "Agregar Nuevo";
-            this.btn_accept.UseVisualStyleBackColor = false;
-            this.btn_accept.Click += new System.EventHandler(this.btn_accept_Click);
+            this.btn_addNew.BackColor = System.Drawing.Color.Goldenrod;
+            this.btn_addNew.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_addNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_addNew.Location = new System.Drawing.Point(452, 20);
+            this.btn_addNew.Name = "btn_addNew";
+            this.btn_addNew.Size = new System.Drawing.Size(118, 29);
+            this.btn_addNew.TabIndex = 34;
+            this.btn_addNew.Text = "Agregar Nuevo";
+            this.btn_addNew.UseVisualStyleBackColor = false;
+            this.btn_addNew.Click += new System.EventHandler(this.btn_addNew_Click);
             // 
             // gbox_new
             // 
@@ -137,7 +137,7 @@ namespace Aplication
             this.gbox_new.Controls.Add(this.lbl_Name);
             this.gbox_new.Controls.Add(this.txt_Description);
             this.gbox_new.Controls.Add(this.lbl_description);
-            this.gbox_new.Controls.Add(this.btn_accept);
+            this.gbox_new.Controls.Add(this.btn_addNew);
             this.gbox_new.Location = new System.Drawing.Point(34, 59);
             this.gbox_new.Name = "gbox_new";
             this.gbox_new.Size = new System.Drawing.Size(584, 129);
@@ -321,7 +321,7 @@ namespace Aplication
             this.btn_Clean.Name = "btn_Clean";
             this.btn_Clean.Size = new System.Drawing.Size(64, 29);
             this.btn_Clean.TabIndex = 41;
-            this.btn_Clean.Text = "Borrar";
+            this.btn_Clean.Text = "Limpiar";
             this.btn_Clean.UseVisualStyleBackColor = false;
             this.btn_Clean.Click += new System.EventHandler(this.btn_Clean_Click);
             // 
@@ -330,7 +330,7 @@ namespace Aplication
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.dddddddd;
+            this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Back2;
             this.ClientSize = new System.Drawing.Size(671, 474);
             this.Controls.Add(this.btn_Clean);
             this.Controls.Add(this.lbl_admin);
@@ -362,7 +362,7 @@ namespace Aplication
         private System.Windows.Forms.Label lbl_Name;
         private System.Windows.Forms.TextBox txt_Description;
         private System.Windows.Forms.Label lbl_description;
-        private System.Windows.Forms.Button btn_accept;
+        private System.Windows.Forms.Button btn_addNew;
         private System.Windows.Forms.GroupBox gbox_new;
         private System.Windows.Forms.DataGridView dgv_standards;
         private System.Windows.Forms.GroupBox gbox_list;
